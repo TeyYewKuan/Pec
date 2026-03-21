@@ -7,24 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
-        tailwind.config = {
-            darkMode: 'class', // 启用基于 class 的暗色模式
-        }
+        tailwind.config = { darkMode: 'class' }
     </script>
     <style>
-        html { scroll-behavior: smooth; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        /* 强制覆盖暗色模式下的全局底色和字体颜色，确保不会出现黑屏 */
+        html { scroll-behavior: smooth; }
         .dark body { background-color: #0f172a !important; color: #f8fafc !important; }
         .dark nav { background-color: #111827 !important; border-color: #1f2937; }
-        .dark .bg-slate-50 { background-color: #111827 !important; }
-        .dark .text-slate-600, .dark .text-slate-500, .dark .text-slate-700 { color: #94a3b8 !important; }
+        .dark .bg-slate-50, .dark .bg-[#f8fafc] { background-color: #111827 !important; }
         .dark .bg-white { background-color: #111827 !important; }
-        .dark .border-slate-100 { border-color: #1f2937; }
-        /* 对 Team 的 grayscale 效果进行微调，确保 hover 时是彩色的 */
-        .member-img { filter: grayscale(100%); transition: filter 0.3s ease; width: 200px; height: 200px; object-fit: cover; border-radius: 1rem; object-position: top; }
+        .member-img { filter: grayscale(100%); transition: 0.3s; width: 200px; height: 200px; object-fit: cover; border-radius: 1rem; }
         .member-img:hover { filter: grayscale(0%); }
-        /* 针对 Contact Form 输入框在 Dark Mode 下的微调 */
-        .dark input, .dark textarea { background-color: #1e293b; border-color: #334155; color: white; }
     </style>
 </head>
 <body class="text-[#0f172a] transition-colors duration-300">
@@ -32,64 +24,58 @@
     <nav class="bg-white sticky top-0 z-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center transition-colors">
         <h1 class="text-2xl font-bold text-[#1e40af] dark:text-[#3b82f6]">ProtectEarth Center</h1>
         <div class="hidden md:flex items-center gap-x-10 text-slate-700 font-medium">
-            <a href="#home" class="hover:text-[#1e40af]">Home</a>
-            <a href="#services" class="hover:text-[#1e40af]">Services</a>
-            <a href="#about" class="hover:text-[#1e40af]">About</a>
-            <a href="#team" class="hover:text-[#1e40af]">Team</a>
-            <a href="#contact" class="hover:text-[#1e40af]">Contact</a>
+            <a href="#home" class="hover:text-[#1e40af] dark:text-slate-300">Home</a>
+            <a href="#services" class="hover:text-[#1e40af] dark:text-slate-300">Services</a>
+            <a href="#about" class="hover:text-[#1e40af] dark:text-slate-300">About</a>
+            <a href="#team" class="hover:text-[#1e40af] dark:text-slate-300">Team</a>
+            <a href="#contact" class="hover:text-[#1e40af] dark:text-slate-300">Contact</a>
             <button id="dark-mode-toggle" class="p-2 ml-4 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                 <i id="mode-icon" class="fas fa-moon text-lg text-slate-500 dark:text-[#3b82f6]"></i>
             </button>
         </div>
     </nav>
 
-    <section id="home" class="py-24 px-6 bg-white overflow-hidden transition-colors">
+    <section id="home" class="py-24 px-6 bg-white transition-colors">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="z-10 text-left">
-                <h2 class="text-5xl md:text-6xl font-black text-[#1e40af] dark:text-[#3b82f6] leading-tight transition-all">Let Us Help You<br>Protect The Earth</h2>
+            <div class="text-left">
+                <h2 class="text-5xl md:text-6xl font-black text-[#1e40af] dark:text-[#3b82f6] leading-tight">Let Us Help You<br>Protect The Earth</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-lg mt-8 leading-relaxed max-w-lg">Delivering sustainable solutions for a cleaner and greener future.</p>
                 <div class="mt-12 flex gap-4">
-                    <button class="bg-[#1e40af] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#1d3a7d] flex items-center gap-2">
+                    <button onclick="window.location.href='#services'" class="bg-[#1e40af] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#1d3a7d] flex items-center gap-2">
                         Get Started <i class="fas fa-arrow-right text-sm"></i>
                     </button>
-                    <button class="border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-8 py-3 rounded-full font-semibold hover:bg-slate-50 dark:hover:bg-slate-800">Learn More</button>
+                    <button onclick="window.location.href='#about'" class="border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-8 py-3 rounded-full font-semibold hover:bg-slate-50">Learn More</button>
                 </div>
             </div>
-            <div class="relative flex justify-center md:justify-end">
-                <img src="https://i.ibb.co/342jYq2/holding-seedling.jpg" class="rounded-[2rem] shadow-2xl z-10 w-full aspect-[16/10] object-cover border-4 border-white dark:border-slate-800 transition" alt="Holding sapling">
-                <div class="absolute -bottom-6 -right-6 text-[#1e40af] opacity-50 text-4xl dark:text-[#3b82f6]">
-                    <i class="fas fa-sparkles"></i>
-                </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" class="rounded-[2rem] shadow-2xl w-full aspect-[16/10] object-cover border-4 border-white dark:border-slate-800" alt="Plant">
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 px-6 bg-[#f8fafc] border-t border-slate-100 transition-colors">
+    <section id="services" class="py-24 px-6 bg-[#f8fafc] transition-colors">
         <div class="max-w-7xl mx-auto text-center">
             <h3 class="text-4xl font-bold dark:text-white">Our Services</h3>
-            <p class="text-slate-600 text-lg mt-6 leading-relaxed max-w-3xl mx-auto">
-                We provide sustainable solutions to help protect the Earth and build a greener future. Our services focus on reducing pollution, saving energy, and encouraging environmentally friendly lifestyles.
-            </p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 text-left">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#3b82f6] transition">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
                     <i class="fas fa-truck-moving text-3xl text-[#3b82f6] mb-6"></i>
                     <h4 class="text-xl font-bold mb-3">Shared Transportation</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">We promote shared transportation to reduce traffic congestion and carbon emissions while making travel more efficient.</p>
+                    <p class="text-slate-500 text-sm">Reduce traffic congestion and carbon emissions.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#3b82f6] transition">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
                     <i class="fas fa-recycle text-3xl text-[#3b82f6] mb-6"></i>
                     <h4 class="text-xl font-bold mb-3">Resource Recycling</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">Our recycling programs help collect and process recyclable materials to reduce waste and protect the environment.</p>
+                    <p class="text-slate-500 text-sm">Collect and process recyclable materials.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#3b82f6] transition">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
                     <i class="fas fa-tree text-3xl text-[#3b82f6] mb-6"></i>
-                    <h4 class="text-xl font-bold mb-3">Tree Planting Programs</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">Our tree planting programs aim to restore nature and improve air quality for future generations.</p>
+                    <h4 class="text-xl font-bold mb-3">Tree Planting</h4>
+                    <p class="text-slate-500 text-sm">Improve air quality for future generations.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-[#3b82f6] transition">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
                     <i class="fas fa-sun text-3xl text-[#3b82f6] mb-6"></i>
-                    <h4 class="text-xl font-bold mb-3">Solar Panel Installation</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">We install solar panels to help homes and businesses use renewable energy and reduce electricity costs.</p>
+                    <h4 class="text-xl font-bold mb-3">Solar Panels</h4>
+                    <p class="text-slate-500 text-sm">Use renewable energy to reduce costs.</p>
                 </div>
             </div>
         </div>
@@ -97,144 +83,81 @@
 
     <section id="about" class="py-24 px-6 bg-white transition-colors">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <img src="https://i.ibb.co/N2L8XmG/office.jpg" class="rounded-[2rem] shadow-2xl w-full aspect-[16/11] object-cover border-4 border-white dark:border-slate-800 transition" alt="Modern office">
-            <div class="text-left md:pl-8">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" class="rounded-[2rem] shadow-2xl w-full aspect-[16/11] object-cover" alt="Office">
+            <div class="text-left">
                 <h3 class="text-4xl font-bold text-[#1e40af] dark:text-[#3b82f6]">About us</h3>
-                <p class="text-slate-600 mt-8 leading-relaxed">ProtectEarthCenter (PEC) is an environmental organization dedicated to protecting the Earth and promoting sustainable living. We believe that small actions can make a big difference in creating a cleaner and greener world.</p>
-                <p class="text-slate-600 mt-6 leading-relaxed">Our mission is to provide eco-friendly solutions that help communities reduce pollution, save energy, and protect natural resources. Through services such as sustainable transportation, resource recycling, solar panel installation, and tree planting programs, we aim to inspire people to take part in protecting our planet.</p>
-                <p class="text-slate-600 mt-6 leading-relaxed">At ProtectEarthCenter, we work together with communities to build a more sustainable future for the next generations.</p>
-                <div class="mt-12 grid grid-cols-3 gap-6 text-center text-[#1e40af]">
-                    <div>
-                        <i class="fas fa-users text-3xl"></i>
-                        <p class="text-3xl font-extrabold dark:text-white mt-3 transition">1000+</p>
-                        <p class="text-slate-500 text-xs mt-1">People Supported</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-award text-3xl"></i>
-                        <p class="text-3xl font-extrabold dark:text-white mt-3 transition">50+</p>
-                        <p class="text-slate-500 text-xs mt-1">Projects Completed</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-target text-3xl"></i>
-                        <p class="text-3xl font-extrabold dark:text-white mt-3 transition">100%</p>
-                        <p class="text-slate-500 text-xs mt-1">Commitment</p>
-                    </div>
+                <p class="text-slate-600 dark:text-slate-400 mt-8 leading-relaxed">ProtectEarthCenter (PEC) is dedicated to promoting sustainable living. We believe small actions make a big difference.</p>
+                <div class="mt-12 grid grid-cols-3 gap-6 text-[#1e40af]">
+                    <div><p class="text-3xl font-black dark:text-white transition">1000+</p><p class="text-slate-500 text-xs">People</p></div>
+                    <div><p class="text-3xl font-black dark:text-white transition">50+</p><p class="text-slate-500 text-xs">Projects</p></div>
+                    <div><p class="text-3xl font-black dark:text-white transition">100%</p><p class="text-slate-500 text-xs">Commitment</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-24 px-6 bg-[#f8fafc] border-t border-slate-100 transition-colors">
-        <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-4xl font-bold dark:text-white">Meet Our Team</h3>
-            <p class="text-slate-600 text-lg mt-6 max-w-lg mx-auto">Passionate individuals dedicated to protecting our planet.</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center">
-                <div>
-                    <img src="https://i.ibb.co/3sXyW3h/nobara.jpg" alt="Tey Yew Kuan" class="member-img mx-auto border-2 border-white dark:border-slate-800 shadow-md">
-                    <h5 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6] mt-5 transition">Tey Yew Kuan</h5>
-                    <p class="text-slate-500 text-sm mt-1">CEO & Founder</p>
-                </div>
-                <div>
-                    <img src="https://i.ibb.co/Tq57L9k/itadori.jpg" alt="Hew Hong Shi" class="member-img mx-auto border-2 border-white dark:border-slate-800 shadow-md">
-                    <h5 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6] mt-5 transition">Hew Hong Shi</h5>
-                    <p class="text-slate-500 text-sm mt-1">Chief Strategy Officer</p>
-                </div>
-                <div>
-                    <img src="https://i.ibb.co/L5C7yW6/gojo.jpg" alt="Goei Xuan" class="member-img mx-auto border-2 border-white dark:border-slate-800 shadow-md">
-                    <h5 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6] mt-5 transition">Goei Xuan</h5>
-                    <p class="text-slate-500 text-sm mt-1">Head of Operations</p>
-                </div>
-                <div>
-                    <img src="https://i.ibb.co/N1WvW5J/megumi.jpg" alt="Yong Yi Kang" class="member-img mx-auto border-2 border-white dark:border-slate-800 shadow-md">
-                    <h5 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6] mt-5 transition">Yong Yi Kang</h5>
-                    <p class="text-slate-500 text-sm mt-1">Director of Innovation</p>
-                </div>
+    <section id="team" class="py-24 px-6 bg-[#f8fafc] transition-colors text-center">
+        <h3 class="text-4xl font-bold dark:text-white">Meet Our Team</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-7xl mx-auto">
+            <div>
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" class="member-img mx-auto">
+                <h5 class="font-bold mt-5 dark:text-[#3b82f6]">Tey Yew Kuan</h5>
+                <p class="text-slate-500 text-sm">CEO & Founder</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="member-img mx-auto">
+                <h5 class="font-bold mt-5 dark:text-[#3b82f6]">Hew Hong Shi</h5>
+                <p class="text-slate-500 text-sm">CSO</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" class="member-img mx-auto">
+                <h5 class="font-bold mt-5 dark:text-[#3b82f6]">Goei Xuan</h5>
+                <p class="text-slate-500 text-sm">COO</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="member-img mx-auto">
+                <h5 class="font-bold mt-5 dark:text-[#3b82f6]">Yong Yi Kang</h5>
+                <p class="text-slate-500 text-sm">Director</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 bg-white border-t border-slate-100 transition-colors">
+    <section id="contact" class="py-24 px-6 bg-white transition-colors">
         <div class="max-w-6xl mx-auto text-center">
-            <h3 class="text-4xl font-bold dark:text-white transition">Secure Our Future</h3>
-            <p class="text-slate-600 text-lg mt-6 max-w-xl mx-auto transition">The healing starts here. Reach out to the 'Protect' team today.</p>
+            <h3 class="text-4xl font-bold dark:text-white">Secure Our Future</h3>
             <div class="grid md:grid-cols-2 gap-12 mt-16 text-left">
-                <div class="space-y-6 transition">
-                    <h4 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6] mb-4">Contact Information</h4>
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl transition">
-                        <i class="fas fa-phone text-2xl text-[#3b82f6] w-8"></i>
-                        <div><p class="text-slate-500">Phone</p><p class="font-medium dark:text-white">011 6556 8558</p></div>
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-[#1e40af] dark:text-[#3b82f6]">Contact Info</h4>
+                    <div class="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <i class="fas fa-envelope text-[#3b82f6]"></i>
+                        <div><p class="text-xs text-slate-500">Email</p><p class="text-sm dark:text-white">D250313C@sc.edu.my</p></div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl transition">
-                        <i class="fas fa-envelope text-2xl text-[#3b82f6] w-8"></i>
-                        <div><p class="text-slate-500">Email</p><p class="font-medium dark:text-white">D250313C@sc.edu.my</p></div>
-                    </div>
-                    <div class="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl transition">
-                        <i class="fas fa-map-marker-alt text-2xl text-[#3b82f6] w-8"></i>
-                        <div><p class="text-slate-500">Address</p><p class="font-medium text-sm dark:text-white">International Educational Building, Jalan Selatan Utama, Taman Perusahaan Ringan Pulai, 81300 Skudai, Johor</p></div>
+                    <div class="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                        <i class="fas fa-phone text-[#3b82f6]"></i>
+                        <div><p class="text-xs text-slate-500">Phone</p><p class="text-sm dark:text-white">011-6556 8558</p></div>
                     </div>
                 </div>
                 <form class="space-y-4">
-                    <label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Name</span><input type="text" placeholder="Your name" class="w-full mt-1 p-3 border border-slate-200 rounded-lg bg-slate-50 focus:ring-1 focus:ring-[#3b82f6] transition"></label>
-                    <label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span><input type="email" placeholder="your.email@example.com" class="w-full mt-1 p-3 border border-slate-200 rounded-lg bg-slate-50 focus:ring-1 focus:ring-[#3b82f6] transition"></label>
-                    <label class="block"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">Message</span><textarea rows="4" placeholder="Tell us about your project..." class="w-full mt-1 p-3 border border-slate-200 rounded-lg bg-slate-50 focus:ring-1 focus:ring-[#3b82f6] transition"></textarea></label>
-                    <button class="w-full bg-[#1e40af] text-white py-3 rounded-lg font-bold hover:bg-[#1d3a7d]">Send Message</button>
+                    <input type="text" placeholder="Name" class="w-full p-3 border border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-lg">
+                    <textarea placeholder="Message" rows="4" class="w-full p-3 border border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-lg"></textarea>
+                    <button type="button" class="w-full bg-[#1e40af] text-white py-3 rounded-lg font-bold">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-[#0f172a] text-white py-16 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="md:col-span-1">
-                <h4 class="text-2xl font-bold text-[#3b82f6]">ProtectEarth Center</h4>
-                <p class="text-slate-400 mt-4 leading-relaxed text-sm max-w-xs">Empowering businesses to achieve their full potential through innovative solutions.</p>
-            </div>
-            <div>
-                <h5 class="font-bold mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-slate-300 text-sm">
-                    <li><a href="#home" class="hover:text-white">Home</a></li>
-                    <li><a href="#services" class="hover:text-white">Services</a></li>
-                    <li><a href="#about" class="hover:text-white">About</a></li>
-                    <li><a href="#team" class="hover:text-white">Team</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold mb-4">Services</h3>
-                <ul class="space-y-2 text-slate-300 text-sm leading-relaxed">
-                    <li>Shared Transportation</li><li>Resource Recycling</li><li>Tree Planting Programs</li><li>Solar Panel Installation</li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold mb-4">Follow Us</h3>
-                <div class="flex gap-4 text-slate-300 text-lg">
-                    <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto text-center border-t border-slate-700 mt-12 pt-8 text-xs text-slate-500">
-            © 2026 ProtectEarth Center. All rights reserved.
-        </div>
+    <footer class="bg-[#0f172a] text-white py-12 text-center">
+        <p class="text-xl font-bold text-[#3b82f6]">ProtectEarth Center</p>
+        <p class="text-slate-500 text-xs mt-4">© 2026 Tey Yew Kuan. All rights reserved.</p>
     </footer>
 
     <script>
         const toggleBtn = document.getElementById('dark-mode-toggle');
         const modeIcon = document.getElementById('mode-icon');
-        const htmlElement = document.documentElement;
-
         toggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            
-            // 切换图标：太阳 vs 月亮
-            if (htmlElement.classList.contains('dark')) {
-                modeIcon.classList.remove('fa-moon');
-                modeIcon.classList.add('fa-sun');
-            } else {
-                modeIcon.classList.remove('fa-sun');
-                modeIcon.classList.add('fa-moon');
-            }
+            document.documentElement.classList.toggle('dark');
+            modeIcon.classList.toggle('fa-moon');
+            modeIcon.classList.toggle('fa-sun');
         });
     </script>
 </body>
